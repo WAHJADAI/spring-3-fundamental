@@ -1,6 +1,6 @@
 package com.tutorial.springfundamental.repository;
 
-import com.tutorial.springfundamental.model.Keyboardmodel;
+import com.tutorial.springfundamental.model.KeyboardModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +11,6 @@ import java.util.UUID;
 
 
 @Repository
-public interface KeyboardRepository extends JpaRepository<Keyboardmodel, UUID> {
-    List<Keyboardmodel> findAll();
+public interface KeyboardRepository extends JpaRepository<KeyboardModel, UUID> {
+    List<KeyboardModel> findAllBy();
 }

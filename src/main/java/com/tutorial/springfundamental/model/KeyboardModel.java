@@ -10,7 +10,7 @@ import java.util.UUID;
 @Table(name = "keyboard")
 @Getter
 @Setter
-public class Keyboardmodel {
+public class KeyboardModel {
     @Id
     @GeneratedValue
     private UUID id;
