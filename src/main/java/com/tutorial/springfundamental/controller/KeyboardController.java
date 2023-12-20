@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,8 @@ public class KeyboardController {
 
     @GetMapping(value = "/id")
     @ResponseStatus(HttpStatus.OK)
-    public String getKeyboardById() {
-        return "GET Keyboard by id";
+    public KeyboardModel getKeyboardById(@PathVariable("id") String id) {
+        return keyboardService.getKeyboardById(id);
     }
 
     @PostMapping(value = "")
