@@ -16,14 +16,19 @@ public class KeyboardModel {
     @Id
     @GeneratedValue
     private UUID id;
-@Column(name = "name")
+
+    @Column(name = "name")
     private String name;
-@Column(name = "quantity")
+
+    @Column(name = "quantity")
     private  int quantity;
-@Column(name ="price" )
+
+    @Column(name ="price" )
     private BigDecimal price;
-@Column(name = "create_timestamp")
+
+    @Column(name = "create_timestamp")
     private ZonedDateTime createtimestamp;
-@Column(name = "last_updated_timestamp")
+
+    @Column(name = "last_updated_timestamp")
     private ZonedDateTime lastupdatedtimestamp;
 }
