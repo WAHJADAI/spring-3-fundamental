@@ -1,6 +1,8 @@
 package com.tutorial.springfundamental.service;
 
 import com.tutorial.springfundamental.dto.KeyboardRecord;
+import com.tutorial.springfundamental.exception.InvalidException;
+import com.tutorial.springfundamental.exception.NotFoundException;
 import com.tutorial.springfundamental.model.KeyboardModel;
 import com.tutorial.springfundamental.repository.KeyboardRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
+
+import static com.tutorial.springfundamental.constants.ErrorMessage.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +25,7 @@ public class KeyboardService {
 
     public KeyboardModel getKeyboardById(String id){
         return keyboardRepository.findById(UUID.fromString(id))
-                .orElseThrow();
+                .orElseThrow(() -> new NotFoundException(NOT_FOUND.formatted("keyboard")));
     }
 
     public KeyboardModel saveKeyboard(KeyboardRecord request){
