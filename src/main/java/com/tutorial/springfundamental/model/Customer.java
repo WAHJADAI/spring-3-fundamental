@@ -26,7 +26,7 @@ public class Customer {
     private  String username;
 
     @Column(name = "password")
-    @Pattern(regexp = "(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+!=])[A-Za-z[0-9]$@$!%*?&]{8,24}$")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,24}")
     private String password;
 
     @Column(name = "email")
