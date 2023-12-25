@@ -1,7 +1,7 @@
 package com.tutorial.springfundamental.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,14 +19,12 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    @Pattern(regexp = "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$")
     private UUID id;
 
     @Column(name = "username")
     private  String username;
 
     @Column(name = "password")
-    @Pattern(regexp = "(?=[A-Za-z\\d@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+!=])([A-Za-z\\d@$!%*?&]{8,24}$)")
     private String password;
 
     @Column(name = "email")
