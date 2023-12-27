@@ -1,13 +1,16 @@
 package com.tutorial.springfundamental.dto;
 
-import jakarta.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.UUID;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
+
 
 public record CustomerRecord(
-        @UUID
+        @NotNull
         String username,
-        @Pattern(regexp = "(?=[A-Za-z\\d@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+!=])([A-Za-z\\d@$!%*?&]{8,24}$)")
+        @NotNull
         String password,
+        @Email
         String email,
         String dateOfBirth) {
 }
