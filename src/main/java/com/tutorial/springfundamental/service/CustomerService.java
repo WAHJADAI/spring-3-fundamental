@@ -8,33 +8,41 @@ import com.tutorial.springfundamental.model.Customer;
 import com.tutorial.springfundamental.repository.CustomerRepository;
 import com.tutorial.springfundamental.utils.DateFormatUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
 
     public Customer getCustomerById(String id) {
-
+    log.info("Get user by id: {}",id);
         return customerRepository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND.formatted("Customer")));
     }
     public Customer saveCustomer(CustomerRecord request) {
+        try{
+            log.info("Create user with username: {}", request.username());
+            validateCustomer(request);
 
             // Create user
             var customer = new Customer();
-        customer.setUsername(request.username());
-        customer.setPassword(request.password());
-        customer.setEmail(request.email());
-        customer.setDateOfBirth(Date.valueOf(request.dateOfBirth()));
+            customer.setUsername(request.username());
+            customer.setPassword(request.password());
+            customer.setEmail(request.email());
+            customer.setDateOfBirth(Date.valueOf(request.dateOfBirth()));
 
             return customerRepository.save(customer);
+        }catch (Exception e){
+            log.error("Failed to create user: {}", e.getMessage(), e);
+            throw new InvalidException("Failed to create user");
+        }
 
     }
 
