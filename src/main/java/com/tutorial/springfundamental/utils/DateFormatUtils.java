@@ -14,5 +14,4 @@ public class DateFormatUtils {
         var formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         return LocalDate.parse(date, formatter);
     }
-
 }
