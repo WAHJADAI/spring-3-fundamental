@@ -14,5 +14,6 @@ public record CustomerRecord(
         String password,
         @Email
         String email,
+        @NotNull
         String dateOfBirth) {
 }
