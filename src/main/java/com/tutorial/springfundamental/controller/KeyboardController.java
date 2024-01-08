@@ -4,18 +4,10 @@ import com.tutorial.springfundamental.dto.KeyboardRecord;
 import com.tutorial.springfundamental.model.KeyboardModel;
 import com.tutorial.springfundamental.repository.KeyboardRepository;
 import com.tutorial.springfundamental.service.KeyboardService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequiredArgsConstructor
@@ -36,6 +28,23 @@ public class KeyboardController {
     public KeyboardModel getKeyboardById(@PathVariable("id") String id) {
         return keyboardService.getKeyboardById(id);
     }
+    @GetMapping(value = "/pagination")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get all keyboard with pagination",description = "Get all keyboard in table with pagination")
+    public List<KeyboardModel> getAllKeyboardWithPagination(@RequestParam("page") int page,@RequestParam("size") int size){
+        return keyboardService.getKeyboardWithPagination(page,size,null,null);
+    }
+    @GetMapping(value = "/pagination/sort")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get all Keyboard with pagination and sort",
+    description = "Get all keyboard in table with pagination and sortable")
+    public List<KeyboardModel> getAllKeyboardWithPaginationAndSort(
+            @RequestParam ("page") int page,@RequestParam("size") int size,
+            @RequestParam("sort") String sortBy, @RequestParam("orderBy") String orderBy
+    ){
+        return keyboardService.getKeyboardWithPagination(page,size,sortBy,orderBy);
+    }
+
 
     @PostMapping(value = "")
     @ResponseStatus(HttpStatus.CREATED)
